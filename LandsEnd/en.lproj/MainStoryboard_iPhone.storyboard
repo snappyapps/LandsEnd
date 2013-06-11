@@ -4,14 +4,13 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
-        <!--View Controller - Lands End-->
+        <!--View Controller-->
         <scene sceneID="f4W-6R-bNX">
             <objects>
                 <tableViewController id="agf-NY-tmL" customClass="ViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="brG-DM-onU">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.18169202300000001" green="0.090854577850000007" blue="0.33418996709999998" alpha="1" colorSpace="calibratedRGB"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" id="JNF-gQ-O4K">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -21,43 +20,41 @@
                             </connections>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" showsReorderControl="YES" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="sign" id="B4n-SX-J1U" customClass="SignTableViewCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" showsReorderControl="YES" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cityCellIdentifier" id="B4n-SX-J1U" customClass="CityTableViewCell">
                                 <rect key="frame" x="0.0" y="66" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QBk-sv-XXp">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="@London" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QBk-sv-XXp">
                                             <constraints>
+                                                <constraint firstAttribute="height" constant="27" id="OxI-6r-ZW3"/>
                                                 <constraint firstAttribute="width" constant="218" id="c34-aO-EPF"/>
-                                                <constraint firstAttribute="height" constant="21" id="xvy-En-YcU"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="23"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9yS-gC-nlc">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="@120" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9yS-gC-nlc">
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="93" id="DKT-Lm-bSG"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" name="TrebuchetMS" family="Trebuchet MS" pointSize="23"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <constraints>
-                                    <constraint firstItem="QBk-sv-XXp" firstAttribute="top" secondItem="B4n-SX-J1U" secondAttribute="top" constant="11" id="Iny-Oc-u24"/>
-                                    <constraint firstItem="QBk-sv-XXp" firstAttribute="leading" secondItem="B4n-SX-J1U" secondAttribute="leading" constant="33" id="N6c-m5-vqc"/>
+                                    <constraint firstItem="9yS-gC-nlc" firstAttribute="top" secondItem="QBk-sv-XXp" secondAttribute="top" type="default" id="9Hs-Eq-7uT"/>
+                                    <constraint firstItem="9yS-gC-nlc" firstAttribute="baseline" secondItem="QBk-sv-XXp" secondAttribute="baseline" type="default" id="9zr-YA-RPx"/>
                                     <constraint firstAttribute="trailing" secondItem="9yS-gC-nlc" secondAttribute="trailing" constant="3" id="P7M-TY-CBE"/>
-                                    <constraint firstItem="QBk-sv-XXp" firstAttribute="baseline" secondItem="9yS-gC-nlc" secondAttribute="baseline" type="default" id="Qs0-MK-J8B"/>
-                                    <constraint firstItem="QBk-sv-XXp" firstAttribute="top" secondItem="9yS-gC-nlc" secondAttribute="top" type="default" id="bCw-XR-EBL"/>
+                                    <constraint firstItem="QBk-sv-XXp" firstAttribute="top" secondItem="B4n-SX-J1U" secondAttribute="top" constant="10" id="UBL-HD-6Xw"/>
+                                    <constraint firstItem="QBk-sv-XXp" firstAttribute="leading" secondItem="B4n-SX-J1U" secondAttribute="leading" constant="24" id="dLW-zl-ySS"/>
                                 </constraints>
                                 <connections>
+                                    <outlet property="cityLabel" destination="QBk-sv-XXp" id="UvD-BM-s41"/>
                                     <outlet property="distanceLabel" destination="9yS-gC-nlc" id="OwH-eg-SOw"/>
-                                    <outlet property="placeLabel" destination="QBk-sv-XXp" id="9cf-TK-DpT"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -66,7 +63,7 @@
                             <outlet property="delegate" destination="agf-NY-tmL" id="nmN-Yu-ntG"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Lands End" id="3yP-Ix-S37"/>
+                    <navigationItem key="navigationItem" id="3yP-Ix-S37"/>
                     <connections>
                         <outlet property="searchDisplayController" destination="dKQ-2s-o3b" id="XX5-2O-qmb"/>
                     </connections>
@@ -103,15 +100,15 @@
         </scene>
     </scenes>
     <classes>
+        <class className="CityTableViewCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CityTableViewCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="cityLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="distanceLabel" candidateClass="UILabel"/>
+            </relationships>
+        </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="SignTableViewCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SignTableViewCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="distanceLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="placeLabel" candidateClass="UILabel"/>
-            </relationships>
         </class>
         <class className="ViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>

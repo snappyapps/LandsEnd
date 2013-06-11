@@ -6,13 +6,13 @@
 //  Copyright (c) 2013 daren taylor. All rights reserved.
 //
 
-#import "Place.h"
+#import "City.h"
 
-@implementation Place
+@implementation City
 
 + (id)name:(NSString *)name lat:(CLLocationDegrees)lat lng:(CLLocationDegrees)lng
 {
-  Place *place = [[Place alloc] init];
+  City *place = [[City alloc] init];
   place.name = name;
   place.location = [[CLLocation alloc] initWithLatitude:lat longitude:lng];
   

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 
-@interface Place : NSObject
+@interface City : NSObject
 
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) CLLocation *location;

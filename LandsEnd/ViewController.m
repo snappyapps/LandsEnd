@@ -7,42 +7,45 @@
 //
 
 #import "ViewController.h"
-#import "Place.h"
-#import "SignTableViewCell.h"
+#import "City.h"
+#import "CityTableViewCell.h"
 #import "UIColor+LandsEndColor.h"
 #import <QuartzCore/QuartzCore.h>
+#import <CoreLocation/CLGeocoder.h>
+#import <CoreLocation/CoreLocation.h>
 
-@interface ViewController ()
-
-@property (nonatomic, strong) NSArray *places;
+@interface ViewController () <CLLocationManagerDelegate>
+@property (nonatomic, strong) NSArray *cities;
 @property (nonatomic, strong) CLLocationManager *locationManager;
-
 @end
 
 @implementation ViewController {
   CLLocation *_lastLocation;
 }
 
-- (NSArray *)places
+- (NSArray *)cities
 {
-  if(_places == nil)
-    _places = @[
-                [Place name:@"Upper Tean" lat:52.9536 lng:-1.9874],
-                [Place name:@"Miami" lat:25.7890 lng:-80.2264],
-                [Place name:@"New York" lat:40.7144 lng:-74.0060],
-                [Place name:@"London" lat:51.5112 lng:-0.1198],
-                [Place name:@"Shanghai" lat:31.230393 lng:121.473704],
-                [Place name:@"Istanbul" lat:41.005270 lng:28.976960],
-                [Place name:@"Moscow" lat:55.751242 lng:37.618422]
-                ];
-    return _places;
+  if(_cities == nil) {
+    NSMutableArray *mutableArray = [[NSMutableArray alloc] init];
+    NSString* content = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"cities" ofType:@"csv"]
+                                                  encoding:NSUTF8StringEncoding
+                                                     error:nil];
+    NSArray *elementsArray = [content componentsSeparatedByCharactersInSet: [NSCharacterSet characterSetWithCharactersInString:@";"]];
+   
+    NSInteger index = 0;
+    do {
+      [mutableArray addObject:[City name:elementsArray[index++] lat:[elementsArray[index++] doubleValue] lng:[elementsArray[index++] doubleValue]]];
+    } while (index < elementsArray.count);
+    
+    _cities = [mutableArray copy];
+  }
+  
+  return _cities;  
 }
 
-- (NSArray *)filteredPlaces
+- (NSArray *)filteredCities
 {
-  NSLog(@"%@", self.searchDisplayController.searchBar.text);
-  
-    return [_places filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"name CONTAINS [cd] %@", self.searchDisplayController.searchBar.text]];
+  return [_cities filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"name CONTAINS [cd] %@", self.searchDisplayController.searchBar.text]];
 }
 
 - (CLLocationManager *)locationManager
@@ -56,30 +59,57 @@
 
 - (void)setupTableView:(UITableView *)tableView
 {
-  tableView.backgroundColor = [UIColor niceGreen];
+  tableView.backgroundColor = [UIColor backgroundColor];
   tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+}
+
+- (void)addStrokeAndRoundedCornersToLayer:(CALayer *)layer
+{
+  [layer setCornerRadius:15.0];
+  [layer setMasksToBounds:YES];
+  layer.opaque = NO;
+  
+  [layer setBorderColor:[UIColor whiteColor].CGColor];
+  [layer setBorderWidth:5];
+}
+
+- (void)customiseViewAppearance
+{
+  [self addStrokeAndRoundedCornersToLayer:self.tableView.layer];
+  [self addStrokeAndRoundedCornersToLayer:self.navigationController.navigationBar.layer];
 }
 
 - (void)awakeFromNib
 {
   [self setupTableView:self.tableView];
-  self.searchDisplayController.searchBar.tintColor = [UIColor niceGreen];
-  self.navigationController.navigationBar.tintColor = [UIColor niceGreen];
+  self.searchDisplayController.searchBar.tintColor = [UIColor backgroundColor];
   self.searchDisplayController.searchResultsDataSource = self;
   [self.locationManager startUpdatingLocation];
   
-  CALayer *capa = [self.navigationController navigationBar].layer;
-  CGRect bounds = capa.bounds;
-  bounds.size.height += 10.0f;    //I'm reserving enough room for the shadow
-  UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:bounds
-                                                 byRoundingCorners:(UIRectCornerTopLeft | UIRectCornerTopRight)
-                                                       cornerRadii:CGSizeMake(10.0, 10.0)];
+  [self customiseViewAppearance];
   
-  CAShapeLayer *maskLayer = [CAShapeLayer layer];
-  maskLayer.frame = bounds;
-  maskLayer.path = maskPath.CGPath;
-  [capa addSublayer:maskLayer];
-  capa.mask = maskLayer;
+  [[UINavigationBar appearance] setBackgroundColor:[UIColor whiteColor]];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+  [super viewWillAppear:animated];
+  
+  [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
+
+}
+
+- (void)updateTitleWithCurrentLocation
+{
+  CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+  
+  __weak UIViewController* weakSelf = self;
+  [geocoder reverseGeocodeLocation:_lastLocation completionHandler:^(NSArray *placemarks, NSError *error) {
+    if(!error && placemarks && placemarks.count > 0) {
+      CLPlacemark *topResult = [placemarks objectAtIndex:0];
+      weakSelf.title = topResult.locality;
+    }
+  }];
 }
 
 #pragma mark - UISearchDisplayDelegate
@@ -93,19 +123,25 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-  return (tableView == self.tableView ? self.places.count : [self filteredPlaces].count);
+  return (tableView == self.tableView ? self.cities.count : [self filteredCities].count);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-  Place *place = (tableView == self.tableView ? self.places[indexPath.row] : [self filteredPlaces][indexPath.row]);
+  City *city = (tableView == self.tableView ? self.cities[indexPath.row] : [self filteredCities][indexPath.row]);
   
-  SignTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"sign"];
-  [cell setup];
-  cell.placeLabel.text = place.name;
-  cell.distanceLabel.text = [NSString stringWithFormat:@"%d", (NSInteger)[place distanceFromLocation:_lastLocation]];
+  CityTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"cityCellIdentifier"];
+  [cell setupAppearance];
+
+  [cell setCity:city location:_lastLocation];
   
   return cell;
+}
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+  cell.backgroundColor = indexPath.row %2 ? [UIColor backgroundColor] : [UIColor backgroundColorLight];
 }
 
 #pragma mark - CLLocationManagerDelegate
@@ -114,6 +150,8 @@
 {
   _lastLocation = [locations lastObject];
   [self.tableView reloadData];
+
+  [self updateTitleWithCurrentLocation];
 }
 
 @end

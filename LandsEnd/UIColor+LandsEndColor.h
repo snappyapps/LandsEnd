@@ -10,6 +10,8 @@
 
 @interface UIColor (LandsEndColor)
 
-+ (UIColor *) niceGreen;
++ (UIColor *) backgroundColor;
++ (UIColor *) backgroundColorLight;
++ (UIColor *) textColor;
 
 @end
