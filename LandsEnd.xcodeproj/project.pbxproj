@@ -10,7 +10,7 @@
 		D6017502175F8E1F004F5AA6 /* cities.csv in Resources */ = {isa = PBXBuildFile; fileRef = D6017501175F8E1F004F5AA6 /* cities.csv */; };
 		D6017504175F8F4E004F5AA6 /* navbarback.png in Resources */ = {isa = PBXBuildFile; fileRef = D6017503175F8F4E004F5AA6 /* navbarback.png */; };
 		D621DDE11767467500C3ED7F /* Transport Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D621DDE01767467500C3ED7F /* Transport Medium.ttf */; };
-		D6A2657E17578E7A00D27397 /* UIFont+LandsEndFont.m in Sources */ = {isa = PBXBuildFile; fileRef = D6A2657D17578E7A00D27397 /* UIFont+LandsEndFont.m */; };
+		D621DDE41767492E00C3ED7F /* UIFont+LandsEndFont.m in Sources */ = {isa = PBXBuildFile; fileRef = D621DDE31767492E00C3ED7F /* UIFont+LandsEndFont.m */; };
 		D6A2658F1757AB4E00D27397 /* appIcon57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = D6A2658E1757AB4E00D27397 /* appIcon57x57.png */; };
 		D6A265911757AB5400D27397 /* appIcon114x114.png in Resources */ = {isa = PBXBuildFile; fileRef = D6A265901757AB5400D27397 /* appIcon114x114.png */; };
 		D6A265931757ADFC00D27397 /* appIcon72X72.png in Resources */ = {isa = PBXBuildFile; fileRef = D6A265921757ADFC00D27397 /* appIcon72X72.png */; };
@@ -38,8 +38,8 @@
 		D6017501175F8E1F004F5AA6 /* cities.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cities.csv; sourceTree = "<group>"; };
 		D6017503175F8F4E004F5AA6 /* navbarback.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navbarback.png; sourceTree = "<group>"; };
 		D621DDE01767467500C3ED7F /* Transport Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Transport Medium.ttf"; sourceTree = "<group>"; };
-		D6A2657C17578E7A00D27397 /* UIFont+LandsEndFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIFont+LandsEndFont.h"; path = "../UIFont+LandsEndFont.h"; sourceTree = "<group>"; };
-		D6A2657D17578E7A00D27397 /* UIFont+LandsEndFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIFont+LandsEndFont.m"; path = "../UIFont+LandsEndFont.m"; sourceTree = "<group>"; };
+		D621DDE21767492E00C3ED7F /* UIFont+LandsEndFont.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+LandsEndFont.h"; sourceTree = "<group>"; };
+		D621DDE31767492E00C3ED7F /* UIFont+LandsEndFont.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+LandsEndFont.m"; sourceTree = "<group>"; };
 		D6A2658E1757AB4E00D27397 /* appIcon57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appIcon57x57.png; sourceTree = "<group>"; };
 		D6A265901757AB5400D27397 /* appIcon114x114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appIcon114x114.png; sourceTree = "<group>"; };
 		D6A265921757ADFC00D27397 /* appIcon72X72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = appIcon72X72.png; sourceTree = "<group>"; };
@@ -90,10 +90,10 @@
 		D6A2658117578EA700D27397 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				D6A2657C17578E7A00D27397 /* UIFont+LandsEndFont.h */,
-				D6A2657D17578E7A00D27397 /* UIFont+LandsEndFont.m */,
 				D6D36EC11754C13A00A6C924 /* UIColor+LandsEndColor.h */,
 				D6D36EC21754C13A00A6C924 /* UIColor+LandsEndColor.m */,
+				D621DDE21767492E00C3ED7F /* UIFont+LandsEndFont.h */,
+				D621DDE31767492E00C3ED7F /* UIFont+LandsEndFont.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -295,7 +295,7 @@
 				D6EB09BB1752A89000E42FA4 /* City.m in Sources */,
 				D6EB09C41752B0FC00E42FA4 /* CityTableViewCell.m in Sources */,
 				D6D36EC31754C13A00A6C924 /* UIColor+LandsEndColor.m in Sources */,
-				D6A2657E17578E7A00D27397 /* UIFont+LandsEndFont.m in Sources */,
+				D621DDE41767492E00C3ED7F /* UIFont+LandsEndFont.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
